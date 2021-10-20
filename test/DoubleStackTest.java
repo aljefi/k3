@@ -219,5 +219,52 @@ public class DoubleStackTest {
       assertEquals ("expression: " + Aout.toString (s), 7., 
          DoubleStack.interpret (s), delta);
    }
+
+   @Test (timeout = 1000)
+   public void testSWAP() {
+      String s = "2 5 SWAP -";
+      assertEquals("expression: " + Aout.toString(s), -3.,
+              DoubleStack.interpret(s), delta);
+   }
+
+   @Test (timeout = 1000)
+   public void testROT() {
+      String s = "2 5 9 ROT - +";
+      assertEquals("expression: " + Aout.toString(s), 12.,
+              DoubleStack.interpret(s), delta);
+   }
+
+   @Test (timeout = 1000)
+   public void testDUP() {
+      String s = "3 DUP *";
+      assertEquals("expression: " + Aout.toString(s), 9.,
+              DoubleStack.interpret(s), delta);
+   }
+
+   @Test (timeout = 1000)
+   public void testKOKKU() {
+      String s = "-3 -5 -7 ROT - SWAP DUP * +";
+      assertEquals("expression: " + Aout.toString(s), 21.,
+              DoubleStack.interpret(s), delta);
+   }
+
+   @Test (expected=RuntimeException.class)
+   public void testSWAPerr() {
+      String s = "2 SWAP";
+      DoubleStack.interpret (s);
+   }
+
+   @Test (expected=RuntimeException.class)
+   public void testROTerr() {
+      String s = "2 1 ROT";
+      DoubleStack.interpret (s);
+   }
+
+   @Test (expected=RuntimeException.class)
+   public void testDUPerr() {
+      String s = " DUP";
+      DoubleStack.interpret (s);
+   }
+
 }
 
