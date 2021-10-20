@@ -1,4 +1,3 @@
-
 public class DoubleStack {
 
    public static void main (String[] argum) {
